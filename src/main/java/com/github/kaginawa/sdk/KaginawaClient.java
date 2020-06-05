@@ -148,13 +148,13 @@ public class KaginawaClient {
      * Retrieves a list of Kaginawa nodes filtered by recently reported.
      * <p>
      * List of {@link Report} fields to retrieve:
+     * </p>
      * <ul>
      *     <li>{@code id}</li>
      *     <li>{@code customId}</li>
      *     <li>{@code serverTime}</li>
      *     <li>{@code success}</li>
      * </ul>
-     * </p>
      *
      * @param thresholdMin freshness threshold from last received time as minutes, 0 for unlimited
      * @return list of newest reports
@@ -203,6 +203,7 @@ public class KaginawaClient {
      * Retrieves past received data of given ID.
      * <p>
      * List of {@link Report} fields to retrieve:
+     * </p>
      * <ul>
      *     <li>{@code id}</li>
      *     <li>{@code customId}</li>
@@ -213,7 +214,6 @@ public class KaginawaClient {
      *     <li>{@code uploadKbps}</li>
      *     <li>{@code downloadKbps}</li>
      * </ul>
-     * </p>
      *
      * @param id    ID
      * @param begin begin time, 0 for unlimited
