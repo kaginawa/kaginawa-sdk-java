@@ -1,0 +1,83 @@
+[
+  {
+    "id": "b8:27:eb:48:5d:47",
+    "success": true,
+    "seq": 10029,
+    "custom_id": "test-rpi",
+    "hostname": "test-rpi.local",
+    "rtt_ms": 194,
+    "server_time": 1591361129
+  },
+  {
+    "id": "b8:27:eb:48:5d:47",
+    "success": true,
+    "seq": 10030,
+    "custom_id": "test-rpi",
+    "hostname": "test-rpi.local",
+    "rtt_ms": 323,
+    "server_time": 1591361309
+  },
+  {
+    "id": "b8:27:eb:48:5d:47",
+    "success": true,
+    "seq": 10031,
+    "custom_id": "test-rpi",
+    "hostname": "test-rpi.local",
+    "rtt_ms": 292,
+    "server_time": 1591361489
+  },
+  {
+    "id": "b8:27:eb:48:5d:47",
+    "success": true,
+    "seq": 10032,
+    "custom_id": "test-rpi",
+    "hostname": "test-rpi.local",
+    "rtt_ms": 166,
+    "server_time": 1591361669
+  },
+  {
+    "id": "b8:27:eb:48:5d:47",
+    "success": true,
+    "seq": 10033,
+    "custom_id": "test-rpi",
+    "hostname": "test-rpi.local",
+    "rtt_ms": 193,
+    "server_time": 1591361849
+  },
+  {
+    "id": "b8:27:eb:48:5d:47",
+    "success": true,
+    "seq": 10034,
+    "custom_id": "test-rpi",
+    "hostname": "test-rpi.local",
+    "rtt_ms": 221,
+    "server_time": 1591362029
+  },
+  {
+    "id": "b8:27:eb:48:5d:47",
+    "success": true,
+    "seq": 10035,
+    "custom_id": "test-rpi",
+    "hostname": "test-rpi.local",
+    "rtt_ms": 192,
+    "server_time": 1591362209
+  },
+  {
+    "id": "b8:27:eb:48:5d:47",
+    "success": true,
+    "seq": 10036,
+    "custom_id": "test-rpi",
+    "hostname": "test-rpi.local",
+    "rtt_ms": 205,
+    "server_time": 1591362389
+  },
+  {
+    "id": "b8:27:eb:48:5d:47",
+    "success": true,
+    "seq": 10037,
+    "custom_id": "test-rpi",
+    "hostname": "test-rpi.local",
+    "rtt_ms": 178,
+    "server_time": 1591362569
+  }
+]
