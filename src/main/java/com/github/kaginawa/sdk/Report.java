@@ -776,9 +776,9 @@ public class Report {
          * @throws IllegalArgumentException if the IP is empty
          */
         public Builder localIpV4(String ip) {
-            Objects.requireNonNull(ip, "ip is required");
+            Objects.requireNonNull(ip, "local ip4 is required");
             if (ip.isEmpty()) {
-                throw new IllegalArgumentException("ip is empty");
+                throw new IllegalArgumentException("local ip4 is empty");
             }
             o.localIpV4 = ip;
             return this;
@@ -793,9 +793,9 @@ public class Report {
          * @throws IllegalArgumentException if the IP is empty
          */
         public Builder localIpV6(String ip) {
-            Objects.requireNonNull(ip, "ip is required");
+            Objects.requireNonNull(ip, "local ip6 is required");
             if (ip.isEmpty()) {
-                throw new IllegalArgumentException("ip is empty");
+                throw new IllegalArgumentException("local ip6 is empty");
             }
             o.localIpV6 = ip;
             return this;
@@ -1009,9 +1009,9 @@ public class Report {
          * @throws IllegalArgumentException if the IP is empty
          */
         public Builder globalIp(String ip) {
-            Objects.requireNonNull(ip, "ip is required");
+            Objects.requireNonNull(ip, "global ip is required");
             if (ip.isEmpty()) {
-                throw new IllegalArgumentException("ip is empty");
+                throw new IllegalArgumentException("global ip is empty");
             }
             o.globalIp = ip;
             return this;

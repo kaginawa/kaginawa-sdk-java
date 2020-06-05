@@ -21,7 +21,7 @@ package com.github.kaginawa.sdk;
  * @since 0.0.1
  */
 public class KaginawaServerException extends Exception {
-    private int httpStatus;
+    private final int httpStatus;
 
     /**
      * Constructs the exception.
@@ -31,6 +31,7 @@ public class KaginawaServerException extends Exception {
      */
     public KaginawaServerException(String message, Throwable cause) {
         super(message, cause);
+        this.httpStatus = -1;
     }
 
     /**

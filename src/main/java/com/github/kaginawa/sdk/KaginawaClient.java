@@ -169,7 +169,7 @@ public class KaginawaClient {
         try {
             return jsonb.fromJson(body, typeOfReportList());
         } catch (JsonbException e) {
-            throw new KaginawaServerException("failed to decode response: " + body, e);
+            throw new KaginawaServerException("failed to decode nodes response: " + body, e);
         }
     }
 
@@ -195,7 +195,7 @@ public class KaginawaClient {
         try {
             return jsonb.fromJson(body, typeOfReportList());
         } catch (JsonbException e) {
-            throw new KaginawaServerException("failed to decode response: " + body, e);
+            throw new KaginawaServerException("failed to decode nodes response: " + body, e);
         }
     }
 
@@ -239,7 +239,7 @@ public class KaginawaClient {
         try {
             return jsonb.fromJson(body, typeOfReportList());
         } catch (JsonbException e) {
-            throw new KaginawaServerException("failed to decode response: " + body, e);
+            throw new KaginawaServerException("failed to decode histories response: " + body, e);
         }
     }
 
@@ -262,7 +262,7 @@ public class KaginawaClient {
         try {
             return jsonb.fromJson(body, SshServer.class);
         } catch (JsonbException e) {
-            throw new KaginawaServerException("failed to decode response: " + body, e);
+            throw new KaginawaServerException("failed to decode servers response: " + body, e);
         }
     }
 
@@ -282,6 +282,7 @@ public class KaginawaClient {
         } catch (IOException e) {
             throw new KaginawaServerException("failed to connect kaginawa server: " + endpoint, e);
         } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
             throw new KaginawaServerException("request interrupted", e);
         }
         if (response.statusCode() != 200) {
