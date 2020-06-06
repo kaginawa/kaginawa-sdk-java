@@ -53,10 +53,6 @@ Add a dependency:
 implementation("com.github.kaginawa:kaginawa-sdk-java:0.0.1")
 ```
 
-<details>
-<summary>Complete examples</summary>
-</details>
-
 ## Documentation
 
 Online javadoc is available on [javadoc.io](https://javadoc.io/doc/com.github.kaginawa/kaginawa-sdk-java).
