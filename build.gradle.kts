@@ -29,7 +29,11 @@ tasks {
     }
 
     withType<Javadoc> {
+        options.locale = "en_US"
         options.modulePath = classpath.toList()
+        (options as StandardJavadocDocletOptions).apply {
+            links("https://docs.oracle.com/en/java/javase/11/docs/api/")
+        }
     }
 
     test {
@@ -103,7 +107,6 @@ publishing {
 }
 
 bintray {
-    println(project.properties)
     user = if (project.hasProperty("bintrayUser")) project.property("bintrayUser") as String else System.getenv("BINTRAY_USER")
     key = if (project.hasProperty("bintrayApiKey")) project.property("bintrayApiKey") as String else System.getenv("BINTRAY_API_KEY")
     setPublications("mavenJava")
