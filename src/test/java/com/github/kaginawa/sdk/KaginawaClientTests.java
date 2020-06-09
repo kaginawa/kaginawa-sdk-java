@@ -105,6 +105,10 @@ public class KaginawaClientTests {
             assertTrue(n.isSuccess());
             assertTrue(n.getCustomId().startsWith("pi"));
             assertEquals(1591263924, n.getServerTimeAsLong());
+            assertEquals("", n.getLocalIpV4());
+            assertEquals("", n.getDiskLabel());
+            assertNotNull(n.getUsbDevices());
+            assertTrue(n.getUsbDevices().isEmpty());
         });
     }
 
