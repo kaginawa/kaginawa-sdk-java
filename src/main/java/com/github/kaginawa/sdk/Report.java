@@ -19,6 +19,7 @@ import javax.json.bind.annotation.JsonbProperty;
 import java.time.Instant;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -37,13 +38,13 @@ public class Report {
     protected Report() {
     }
 
-    protected String id;
+    protected String id = "";
 
     protected int trigger;
 
     protected boolean success;
 
-    protected String runtime;
+    protected String runtime = "";
 
     @JsonbProperty("seq")
     protected int sequence;
@@ -55,25 +56,25 @@ public class Report {
     @JsonbProperty("gen_ms")
     protected long genMillis;
 
-    protected String agentVersion;
+    protected String agentVersion = "";
 
-    protected String customId;
+    protected String customId = "";
 
-    protected String sshServerHost;
+    protected String sshServerHost = "";
 
     protected int sshRemotePort;
 
     protected long sshConnectTime;
 
-    protected String adapter;
+    protected String adapter = "";
 
     @JsonbProperty("ipv4_local")
-    protected String localIpV4;
+    protected String localIpV4 = "";
 
     @JsonbProperty("ipv6_local")
-    protected String localIpV6;
+    protected String localIpV6 = "";
 
-    protected String hostname;
+    protected String hostname = "";
 
     @JsonbProperty("rtt_ms")
     protected long rttMillis;
@@ -88,25 +89,25 @@ public class Report {
 
     protected long diskUsedBytes;
 
-    protected String diskLabel;
+    protected String diskLabel = "";
 
-    protected String diskFilesystem;
+    protected String diskFilesystem = "";
 
-    protected String diskMountPoint;
+    protected String diskMountPoint = "";
 
-    protected String diskDevice;
+    protected String diskDevice = "";
 
-    protected List<UsbDevice> usbDevices;
+    protected List<UsbDevice> usbDevices = Collections.emptyList();
 
-    protected List<String> bdLocalDevices;
+    protected List<String> bdLocalDevices = Collections.emptyList();
 
-    protected List<String> errors;
+    protected List<String> errors = Collections.emptyList();
 
     @JsonbProperty("ip_global")
-    protected String globalIp;
+    protected String globalIp = "";
 
     @JsonbProperty("host_global")
-    protected String globalHost;
+    protected String globalHost = "";
 
     protected long serverTime;
 

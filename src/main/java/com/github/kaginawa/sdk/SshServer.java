@@ -32,15 +32,15 @@ public class SshServer {
     protected SshServer() {
     }
 
-    protected String host;
+    protected String host = "";
 
     protected int port;
 
-    protected String user;
+    protected String user = "";
 
-    protected String key;
+    protected String key = "";
 
-    protected String password;
+    protected String password = "";
 
     /**
      * Returns the host name.
