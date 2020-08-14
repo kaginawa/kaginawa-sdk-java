@@ -33,7 +33,7 @@ Add a dependency to the `dependencies` element:
 <dependency>
     <groupId>com.github.kaginawa</groupId>
     <artifactId>kaginawa-sdk-java</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.3</version>
 </dependency>
 ```
 
@@ -50,7 +50,7 @@ repositories {
 Add a dependency:
 
 ```kotlin
-implementation("com.github.kaginawa:kaginawa-sdk-java:0.0.2")
+implementation("com.github.kaginawa:kaginawa-sdk-java:0.0.3")
 ```
 
 ## Documentation
@@ -59,7 +59,7 @@ Online javadoc is available on [javadoc.io](https://javadoc.io/doc/com.github.ka
 
 ## Examples
 
-See [KaginawaHello.java](src/main/java/com/github/kaginawa/examples/hello/KaginawaHello.java).
+See [KaginawaHello.java](src/main/java/com/github/kaginawa/examples/hello/KaginawaHello.java) and [KaginawaCommand.java](src/main/java/com/github/kaginawa/examples/hello/KaginawaCommand.java).
 
 ## License
 
