@@ -182,6 +182,77 @@ public class KaginawaClientTests {
         assertThrows(IllegalArgumentException.class, () -> client.listNodesByCustomId(""));
     }
 
+    @Test
+    public void testFindNodeById() {
+        var client = new KaginawaClient("http://example.com", "12345", httpClient);
+        try {
+            when(stringResponse.body()).thenReturn(readFile("node.json"));
+            when(stringResponse.statusCode()).thenReturn(200);
+            when(httpClient.send(any(), eq(client.getStringHandler()))).thenReturn(stringResponse);
+        } catch (IOException | InterruptedException e) {
+            fail(e);
+        }
+        Report report = null;
+        try {
+            report = client.findNodeById("b8:27:eb:73:90:9f");
+        } catch (KaginawaServerException e) {
+            fail(e);
+        }
+        assertNotNull(report);
+        assertNotNull(report.getId());
+        assertTrue(report.isSuccess());
+        assertEquals("test-rpi", report.getCustomId());
+        assertEquals("test-rpi.local", report.getHostname());
+        assertTrue(report.getServerTimeAsLong() > 0);
+    }
+
+    @Test
+    public void testFindNodeById_KSE() {
+        var client = new KaginawaClient("http://example.com", "12345", httpClient);
+        try {
+            when(stringResponse.body()).thenReturn("");
+            when(stringResponse.statusCode()).thenReturn(404);
+            when(httpClient.send(any(), eq(client.getStringHandler()))).thenReturn(stringResponse);
+        } catch (IOException | InterruptedException e) {
+            fail(e);
+        }
+        assertThrows(KaginawaServerException.class, () -> client.findNodeById("foo"));
+    }
+
+    @Test
+    public void testFindNodeById_IAE() {
+        var client = new KaginawaClient("http://example.com", "12345");
+        assertThrows(IllegalArgumentException.class, () -> client.findNodeById(""));
+    }
+
+    @Test
+    public void testCommand() {
+        var client = new KaginawaClient("http://example.com", "12345", httpClient);
+        try {
+            when(stringResponse.body()).thenReturn("OK");
+            when(stringResponse.statusCode()).thenReturn(200);
+            when(httpClient.send(any(), eq(client.getStringHandler()))).thenReturn(stringResponse);
+        } catch (IOException | InterruptedException e) {
+            fail(e);
+        }
+        String resp = null;
+        try {
+            resp = client.command("b8:27:eb:73:90:9f", "echo \"OK\"", "user", "key", "pass", 10);
+        } catch (KaginawaServerException e) {
+            fail(e);
+        }
+        assertNotNull(resp);
+        assertEquals("OK", resp);
+    }
+
+    @Test
+    public void testCommand_IAE() {
+        var client = new KaginawaClient("http://example.com", "12345");
+        assertThrows(IllegalArgumentException.class, () -> client.command("", "cmd", "user", null, "pass", 0));
+        assertThrows(IllegalArgumentException.class, () -> client.command("id", "", "user", null, "pass", 0));
+        assertThrows(IllegalArgumentException.class, () -> client.command("id", "cmd", "", null, "pass", 0));
+    }
+
     @ParameterizedTest
     @ValueSource(ints = {0, 9}) // histories_0.json and histories_9.json
     public void testListHistories(int nOfResponse) {

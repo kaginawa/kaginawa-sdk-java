@@ -23,7 +23,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
- * Basic example of the Kaginawa SDK for Java.
+ * Basic query example of the Kaginawa SDK for Java.
  */
 public class KaginawaHello {
     private static final String USAGE = "Usage: KaginawaHello -e <ENDPOINT> -k <API_KEY>";

@@ -165,7 +165,7 @@ public class KaginawaClient {
         if (thresholdMin > 0) {
             url += "&minutes=" + thresholdMin;
         }
-        var body = retrieveStringResponse(url);
+        var body = getStringResponse(url);
         try {
             return jsonb.fromJson(body, typeOfReportList());
         } catch (JsonbException e) {
@@ -191,12 +191,82 @@ public class KaginawaClient {
             throw new IllegalArgumentException("customId is empty");
         }
         var url = endpoint + NODE_RESOURCE + "?custom-id=" + customId;
-        var body = retrieveStringResponse(url);
+        var body = getStringResponse(url);
         try {
             return jsonb.fromJson(body, typeOfReportList());
         } catch (JsonbException e) {
             throw new KaginawaServerException("failed to decode nodes response: " + body, e);
         }
+    }
+
+    /**
+     * Retrieves a single Kaginawa node.
+     *
+     * @param id ID, commonly MAC address
+     * @return a report
+     * @throws NullPointerException     if the given parameter is {@code null}
+     * @throws IllegalArgumentException if the given parameter is empty
+     * @throws KaginawaServerException  if the network or data error occurs (incl. not found)
+     */
+    public Report findNodeById(String id) throws KaginawaServerException {
+        Objects.requireNonNull(id, "id is required");
+        if (id.isEmpty()) {
+            throw new IllegalArgumentException("id is empty");
+        }
+        var url = endpoint + NODE_RESOURCE + "/" + id.toLowerCase();
+        var body = getStringResponse(url);
+        try {
+            return jsonb.fromJson(body, Report.class);
+        } catch (JsonbException e) {
+            throw new KaginawaServerException("failed to decode nodes response: " + body, e);
+        }
+    }
+
+    /**
+     * Executes a command.
+     *
+     * @param id         target ID, commonly MAC address
+     * @param command    command
+     * @param user       login user
+     * @param key        (optional) key content of the login user
+     * @param password   (optional) password of the login user
+     * @param timeoutSec (optional) timeout in seconds, set 0 to default
+     * @return result of given command
+     * @throws NullPointerException     if the given non-optional parameter is {@code null}
+     * @throws IllegalArgumentException if the given non-optional parameter is empty
+     * @throws KaginawaServerException  if the network or data error occurs
+     */
+    public String command(String id, String command, String user, String key, String password, int timeoutSec)
+            throws KaginawaServerException {
+        Objects.requireNonNull(id, "id is required");
+        Objects.requireNonNull(command, "command is required");
+        Objects.requireNonNull(user, "user is required");
+        if (id.isEmpty()) {
+            throw new IllegalArgumentException("id is empty");
+        }
+        if (command.isEmpty()) {
+            throw new IllegalArgumentException("command is empty");
+        }
+        if (user.isEmpty()) {
+            throw new IllegalArgumentException("user is empty");
+        }
+        var param = "command=" + command + "&user=" + user;
+        if (key != null && !key.isEmpty()) {
+            param += "&key=" + key;
+        }
+        if (password != null && !password.isEmpty()) {
+            param += "&password=" + password;
+        }
+        if (timeoutSec > 0) {
+            param += "&timeout=" + timeoutSec;
+        }
+        var url = endpoint + NODE_RESOURCE + "/" + id.toLowerCase() + "/command";
+        var request = HttpRequest.newBuilder(URI.create(url))
+                .header("Content-Type", "application/x-www-form-urlencoded; charset=utf-8")
+                .header("Authorization", "token " + apiKey)
+                .POST(HttpRequest.BodyPublishers.ofString(param))
+                .build();
+        return retrieveStringResponse(request);
     }
 
     /**
@@ -235,7 +305,7 @@ public class KaginawaClient {
         if (end > 0) {
             url += "&end=" + end;
         }
-        var body = retrieveStringResponse(url);
+        var body = getStringResponse(url);
         try {
             return jsonb.fromJson(body, typeOfReportList());
         } catch (JsonbException e) {
@@ -258,7 +328,7 @@ public class KaginawaClient {
             throw new IllegalArgumentException("hostname is empty");
         }
         var url = endpoint + SERVER_RESOURCE + "/" + hostname;
-        var body = retrieveStringResponse(url);
+        var body = getStringResponse(url);
         try {
             return jsonb.fromJson(body, SshServer.class);
         } catch (JsonbException e) {
@@ -271,11 +341,15 @@ public class KaginawaClient {
         }.getClass().getGenericSuperclass();
     }
 
-    private String retrieveStringResponse(String url) throws KaginawaServerException {
+    private String getStringResponse(String url) throws KaginawaServerException {
         var request = HttpRequest.newBuilder(URI.create(url))
                 .header("Accept", "application/json")
                 .header("Authorization", "token " + apiKey)
                 .build();
+        return retrieveStringResponse(request);
+    }
+
+    private String retrieveStringResponse(HttpRequest request) throws KaginawaServerException {
         HttpResponse<String> response;
         try {
             response = httpClient.send(request, stringHandler);
@@ -286,7 +360,8 @@ public class KaginawaClient {
             throw new KaginawaServerException("request interrupted", e);
         }
         if (response.statusCode() != 200) {
-            throw new KaginawaServerException("HTTP " + response.statusCode(), response.statusCode());
+            var msg = "HTTP " + response.statusCode() + " " + response.body();
+            throw new KaginawaServerException(msg, response.statusCode());
         }
         return response.body();
     }
