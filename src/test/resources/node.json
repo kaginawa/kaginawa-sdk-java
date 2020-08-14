@@ -1,0 +1,59 @@
+{
+  "id": "b8:27:eb:73:90:9f",
+  "trigger": 3,
+  "runtime": "linux arm",
+  "success": true,
+  "seq": 9994,
+  "device_time": 1591270237,
+  "boot_time": 1589472032,
+  "gen_ms": 774,
+  "agent_version": "v0.0.7",
+  "custom_id": "test-rpi",
+  "ssh_server_host": "example.com",
+  "ssh_remote_port": 35771,
+  "ssh_connect_time": 1591240218,
+  "adapter": "eth0",
+  "ip6_local": "fe80::54eb:2148:986:9f7a",
+  "hostname": "test-rpi.local",
+  "rtt_ms": 94,
+  "upload_bps": 3868,
+  "download_bps": 3430,
+  "disk_total_bytes": 2691837952,
+  "disk_used_bytes": 2358947840,
+  "disk_filesystem": "ext4",
+  "disk_mount_point": "/",
+  "disk_device": "/dev/root",
+  "usb_devices": [
+    {
+      "name": "Arduino SA Uno R3 (CDC ACM)",
+      "vendor_id": "2341",
+      "product_id": "0043",
+      "location": "Bus 001 Device 004"
+    },
+    {
+      "name": "Standard Microsystems Corp. SMSC9512/9514 Fast Ethernet Adapter",
+      "vendor_id": "0424",
+      "product_id": "ec00",
+      "location": "Bus 001 Device 003"
+    },
+    {
+      "name": "Standard Microsystems Corp. ",
+      "vendor_id": "0424",
+      "product_id": "9514",
+      "location": "Bus 001 Device 002"
+    },
+    {
+      "name": "Linux Foundation 2.0 root hub",
+      "vendor_id": "1d6b",
+      "product_id": "0002",
+      "location": "Bus 001 Device 001"
+    }
+  ],
+  "bd_local_devices": [
+    "B8:27:EB:D9:3A:35"
+  ],
+  "ip_global": "202.222.12.138",
+  "host_global": "ngn-nat1.v4.open.ad.jp",
+  "server_time": 1591270237,
+  "api_key": "12345"
+}
