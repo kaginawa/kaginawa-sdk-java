@@ -16,10 +16,10 @@ repositories {
 
 dependencies {
     implementation("javax.json.bind:javax.json.bind-api:1.0")
-    runtimeOnly("org.eclipse:yasson:1.0.7")
+    runtimeOnly("org.eclipse:yasson:1.0.8")
     testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
     testImplementation("org.junit.jupiter:junit-jupiter-params:$junitVersion")
-    testImplementation("org.mockito:mockito-junit-jupiter:3.3.3")
+    testImplementation("org.mockito:mockito-junit-jupiter:3.4.6")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
 }
 
