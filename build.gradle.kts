@@ -15,7 +15,7 @@ repositories {
 }
 
 dependencies {
-    implementation("javax.json.bind:javax.json.bind-api:1.0")
+    implementation("jakarta.json.bind:jakarta.json.bind-api:1.0.2")
     runtimeOnly("org.eclipse:yasson:1.0.8")
     testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
     testImplementation("org.junit.jupiter:junit-jupiter-params:$junitVersion")
