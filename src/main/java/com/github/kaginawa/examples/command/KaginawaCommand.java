@@ -25,47 +25,61 @@ import java.util.Scanner;
  */
 public class KaginawaCommand {
     public static void main(String[] args) {
-        // build client
-        var scanner = new Scanner(System.in);
-        System.out.print("endpoint > ");
-        var endpoint = scanner.nextLine();
-        System.out.print("api key > ");
-        var apiKey = scanner.nextLine();
-        if (!endpoint.startsWith("http://") && !endpoint.startsWith("https://")) {
-            endpoint = "https://" + endpoint;
-        }
-        var client = new KaginawaClient(endpoint, apiKey);
-
-        // collect target information
-        System.out.print("target id > ");
-        var id = scanner.nextLine();
-        try {
-            var report = client.findNodeById(id);
-            System.out.println(report.getId() + " " + report.getHostname());
-        } catch (KaginawaServerException e) {
-            System.err.println(e.toString());
-            return;
-        }
-
-        System.out.print("user > ");
-        var user = scanner.nextLine();
-        System.out.print("password > ");
-        var password = scanner.nextLine();
-
-        // command prompt
-        while (true) {
-            System.out.print("command (type \"exit\" to exit) > ");
-            var command = scanner.nextLine();
-            if (command.equals("exit") || command.equals("quit")) {
-                break;
+        try (var scanner = new Scanner(System.in)) {
+            // Build client
+            System.out.print("endpoint > ");
+            var endpoint = scanner.nextLine();
+            System.out.print("api key > ");
+            var apiKey = scanner.nextLine();
+            if (!endpoint.startsWith("http://") && !endpoint.startsWith("https://")) {
+                endpoint = "https://" + endpoint;
             }
+            var client = new KaginawaClient(endpoint, apiKey);
+
+            // Collect target information
+            System.out.print("target id > ");
+            var id = scanner.nextLine();
             try {
-                var result = client.command(id, command, user, null, password, 0);
-                System.out.println(result);
+                var report = client.findNodeById(id);
+                System.out.println(report.getId() + " " + report.getHostname());
             } catch (KaginawaServerException e) {
                 System.err.println(e.toString());
+                return;
+            }
+
+            // Login prompt
+            System.out.print("user > ");
+            var user = scanner.nextLine();
+            System.out.print("password > ");
+            var password = scanner.nextLine();
+
+            // Command prompt
+            while (true) {
+                System.out.print("command (type \"exit\" to exit) > ");
+                var command = scanner.nextLine();
+                if (command.equals("exit") || command.equals("quit")) {
+                    break;
+                }
+                try {
+                    var result = client.command(id, command, user, null, password, 0);
+                    System.out.println(result);
+                } catch (KaginawaServerException e) {
+                    System.err.println(e.toString());
+                    if (e.getMessage().contains("authenticate")) {
+                        break;
+                    }
+                    gap(); // Ensure the next prompt (std.out) is printed after this error (std.err)
+                }
             }
         }
-        scanner.close();
+    }
+
+    private static void gap() {
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e2) {
+            System.err.println("interrupted");
+            Thread.currentThread().interrupt();
+        }
     }
 }
