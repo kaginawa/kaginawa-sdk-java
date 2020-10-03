@@ -418,7 +418,7 @@ public class Report {
     /**
      * Returns the kernel version or OS version.
      * <p>
-     * Supported since kaginawa 1.1.0, kaginawa-server 0.0.3 and kaginawa-sdk-java 0.1.0.
+     * Supported since kaginawa 1.0.0, kaginawa-server 0.0.3 and kaginawa-sdk-java 0.1.0.
      * </p>
      *
      * @return kernel version or OS version
