@@ -79,6 +79,7 @@ public class KaginawaCommand {
             Thread.sleep(100);
         } catch (InterruptedException e2) {
             System.err.println("interrupted");
+            Thread.currentThread().interrupt();
         }
     }
 }
