@@ -29,7 +29,7 @@ public class KaginawaHello {
     private static final String USAGE = "Usage: KaginawaHello -e <ENDPOINT> -k <API_KEY>";
 
     public static void main(String[] args) {
-        // get endpoint and api key from command-line arguments
+        // Get endpoint and api key from command-line arguments
         var endpoint = "";
         var apiKey = "";
         for (int i = 0; i < args.length; i++) {
@@ -45,10 +45,10 @@ public class KaginawaHello {
             return;
         }
 
-        // create a client object
+        // Create a client object
         var client = new KaginawaClient(endpoint, apiKey);
 
-        // retrieve list of alive (recently reported) nodes
+        // Retrieve list of alive (recently reported) nodes
         List<Report> aliveNodes;
         try {
             aliveNodes = client.listAliveNodes(5);
@@ -58,7 +58,7 @@ public class KaginawaHello {
             return;
         }
 
-        // print the result
+        // Print the result
         System.out.println(aliveNodes.size() + " alive node(s) detected.");
         var formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         aliveNodes.forEach(n -> {
