@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.kaginawa.examples.hello;
+package com.github.kaginawa.examples.command;
 
 import com.github.kaginawa.sdk.KaginawaClient;
 import com.github.kaginawa.sdk.KaginawaServerException;
