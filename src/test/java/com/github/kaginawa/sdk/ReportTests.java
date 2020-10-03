@@ -52,6 +52,7 @@ public class ReportTests {
         assertNotNull(builder.downloadKbps(3430L));
         assertNotNull(builder.diskTotalBytes(2691837952L));
         assertNotNull(builder.diskUsedBytes(2358947840L));
+        assertNotNull(builder.kernelVersion("19.6.0"));
         assertNotNull(builder.diskLabel("OS"));
         assertNotNull(builder.diskFilesystem("ext4"));
         assertNotNull(builder.diskMountPoint("/"));
@@ -105,6 +106,7 @@ public class ReportTests {
         assertEquals("Bus 001 Device 001", report.getUsbDevices().get(1).getLocation());
         assertEquals(1, report.getBdLocalDevices().size());
         assertEquals("B8:27:EB:D9:3A:35", report.getBdLocalDevices().get(0));
+        assertEquals("19.6.0", report.getKernelVersion());
         assertEquals(1, report.getErrors().size());
         assertEquals("error entry test", report.getErrors().get(0));
         assertEquals("202.222.12.138", report.getGlobalIp());
@@ -136,6 +138,7 @@ public class ReportTests {
         assertThrows(NullPointerException.class, () -> builder.diskDevice(null));
         assertThrows(NullPointerException.class, () -> builder.usbDevices(null));
         assertThrows(NullPointerException.class, () -> builder.bdLocalDevices(null));
+        assertThrows(NullPointerException.class, () -> builder.kernelVersion(null));
         assertThrows(NullPointerException.class, () -> builder.errors(null));
         assertThrows(NullPointerException.class, () -> builder.globalIp(null));
         assertThrows(NullPointerException.class, () -> builder.globalHost(null));
@@ -172,6 +175,7 @@ public class ReportTests {
         assertThrows(IllegalArgumentException.class, () -> builder.serverTime(-1));
         assertThrows(IllegalArgumentException.class, () -> builder.globalIp(""));
         assertThrows(IllegalArgumentException.class, () -> builder.globalHost(""));
+        assertThrows(IllegalArgumentException.class, () -> builder.kernelVersion(""));
     }
 
     @Test

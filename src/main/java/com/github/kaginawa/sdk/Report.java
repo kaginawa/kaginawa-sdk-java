@@ -101,6 +101,11 @@ public class Report {
 
     protected List<String> bdLocalDevices = Collections.emptyList();
 
+    /**
+     * @since 0.1.0
+     */
+    protected String kernelVersion = "";
+
     protected List<String> errors = Collections.emptyList();
 
     @JsonbProperty("ip_global")
@@ -408,6 +413,19 @@ public class Report {
      */
     public List<String> getBdLocalDevices() {
         return bdLocalDevices;
+    }
+
+    /**
+     * Returns the kernel version or OS version.
+     * <p>
+     * Supported since kaginawa 1.1.0, kaginawa-server 0.0.3 and kaginawa-sdk-java 0.1.0.
+     * </p>
+     *
+     * @return kernel version or OS version
+     * @since 0.1.0
+     */
+    public String getKernelVersion() {
+        return kernelVersion;
     }
 
     /**
@@ -978,13 +996,30 @@ public class Report {
         /**
          * Sets a list of Bluetooth local devices.
          *
-         * @param devices list of Blouetooth local devices
+         * @param devices list of Bluetooth local devices
          * @return this builder
          * @throws NullPointerException if the devices is {@code null}
          */
         public Builder bdLocalDevices(List<String> devices) {
             Objects.requireNonNull(devices);
             o.bdLocalDevices = devices;
+            return this;
+        }
+
+        /**
+         * Sets a kernel version or OS version.
+         *
+         * @param version kernel version or OS version
+         * @throws NullPointerException     if the version is {@code null}
+         * @throws IllegalArgumentException if the version is empty
+         * @since 0.1.0
+         */
+        public Builder kernelVersion(String version) {
+            Objects.requireNonNull(version);
+            if (version.isEmpty()) {
+                throw new IllegalArgumentException("kernel version is empty");
+            }
+            o.kernelVersion = version;
             return this;
         }
 
