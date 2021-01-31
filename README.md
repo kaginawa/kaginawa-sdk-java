@@ -59,7 +59,7 @@ Online javadoc is available on [javadoc.io](https://javadoc.io/doc/com.github.ka
 
 ## Examples
 
-See [KaginawaHello.java](src/main/java/com/github/kaginawa/examples/hello/KaginawaHello.java) and [KaginawaCommand.java](src/main/java/com/github/kaginawa/examples/hello/KaginawaCommand.java).
+See [KaginawaHello.java](src/main/java/com/github/kaginawa/examples/hello/KaginawaHello.java) and [KaginawaCommand.java](src/main/java/com/github/kaginawa/examples/command/KaginawaCommand.java).
 
 ## License
 
