@@ -13,6 +13,7 @@
   "ssh_remote_port": 35771,
   "ssh_connect_time": 1591240218,
   "adapter": "eth0",
+  "ip4_local": "192.168.1.10",
   "ip6_local": "fe80::54eb:2148:986:9f7a",
   "hostname": "test-rpi.local",
   "rtt_ms": 94,
