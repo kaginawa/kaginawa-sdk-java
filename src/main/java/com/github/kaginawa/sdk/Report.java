@@ -68,10 +68,10 @@ public class Report {
 
     protected String adapter = "";
 
-    @JsonbProperty("ipv4_local")
+    @JsonbProperty("ip4_local")
     protected String localIpV4 = "";
 
-    @JsonbProperty("ipv6_local")
+    @JsonbProperty("ip6_local")
     protected String localIpV6 = "";
 
     protected String hostname = "";
