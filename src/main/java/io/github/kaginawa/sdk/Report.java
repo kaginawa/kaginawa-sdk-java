@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.kaginawa.sdk;
+package io.github.kaginawa.sdk;
 
 import javax.json.bind.annotation.JsonbProperty;
 import java.time.Instant;

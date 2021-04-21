@@ -7,8 +7,8 @@ plugins {
 
 val junitVersion = "5.6.2"
 
-group = "com.github.kaginawa"
-version = "0.1.1"
+group = "io.github.kaginawa"
+version = "0.2.0"
 
 repositories {
     mavenCentral()
