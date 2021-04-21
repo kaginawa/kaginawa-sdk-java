@@ -3,7 +3,6 @@ plugins {
     `maven-publish`
     signing
     jacoco
-    id("com.jfrog.bintray") version "1.8.5"
 }
 
 val junitVersion = "5.6.2"
@@ -125,17 +124,4 @@ publishing {
 signing {
     useInMemoryPgpKeys(System.getenv("SIGNING_KEY"), System.getenv("SIGNING_PASSWORD"))
     sign(publishing.publications)
-}
-
-bintray {
-    user = if (project.hasProperty("bintrayUser")) project.property("bintrayUser") as String else System.getenv("BINTRAY_USER")
-    key = if (project.hasProperty("bintrayApiKey")) project.property("bintrayApiKey") as String else System.getenv("BINTRAY_API_KEY")
-    setPublications("mavenJava")
-    pkg.apply {
-        repo = "kaginawa-sdk-java"
-        name = "kaginawa-sdk-java"
-        userOrg = "kaginawa"
-        setLicenses("Apache-2.0")
-        vcsUrl = "https://github.com/kaginawa/kaginawa-sdk-java.git"
-    }
 }
