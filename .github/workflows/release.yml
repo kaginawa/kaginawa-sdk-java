@@ -13,6 +13,10 @@ jobs:
       - name: Publish to Github Packages
         run: ./gradlew publish
         env:
+          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
+          SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
+          SIGNING_PASSWORD: ${{ secrets.SIGNING_PASSWORD }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish to Bintray
         run: ./gradlew bintrayUpload

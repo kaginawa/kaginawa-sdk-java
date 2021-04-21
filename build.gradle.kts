@@ -1,6 +1,7 @@
 plugins {
     `java-library`
     `maven-publish`
+    signing
     jacoco
     id("com.jfrog.bintray") version "1.8.5"
 }
@@ -86,6 +87,13 @@ publishing {
                         url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
                     }
                 }
+                developers {
+                    developer {
+                        id.set("mikan")
+                        name.set("Yutaka Kato")
+                        email.set("mikan@aomikan.org")
+                    }
+                }
                 scm {
                     connection.set("scm:git:git://github.com/kaginawa/kaginawa-sdk-java.git")
                     developerConnection.set("scm:git:ssh://github.com/kaginawa/kaginawa-sdk-java.git")
@@ -103,7 +111,20 @@ publishing {
                 password = System.getenv("GITHUB_TOKEN")
             }
         }
+        maven {
+            name = "OSSRH"
+            url = uri("https://oss.sonatype.org/service/local/staging/deploy/maven2")
+            credentials {
+                username = System.getenv("MAVEN_USERNAME")
+                password = System.getenv("MAVEN_PASSWORD")
+            }
+        }
     }
+}
+
+signing {
+    useInMemoryPgpKeys(System.getenv("SIGNING_KEY"), System.getenv("SIGNING_PASSWORD"))
+    sign(publishing.publications)
 }
 
 bintray {
