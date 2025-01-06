@@ -1,9 +1,6 @@
 kagianwa-sdk-go
 ===============
 
-[![Actions Status](https://github.com/kaginawa/kaginawa-sdk-java/workflows/Gradle/badge.svg)](https://github.com/kaginawa/kaginawa-sdk-java/actions)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=kaginawa_kaginawa-sdk-java&metric=alert_status)](https://sonarcloud.io/dashboard?id=kaginawa_kaginawa-sdk-java)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=kaginawa_kaginawa-sdk-java&metric=coverage)](https://sonarcloud.io/dashboard?id=kaginawa_kaginawa-sdk-java)
 [![Download](https://img.shields.io/maven-central/v/io.github.kaginawa/kaginawa-sdk-java)](https://search.maven.org/artifact/io.github.kaginawa/kaginawa-sdk-java)
 [![javadoc](https://javadoc.io/badge2/io.github.kaginawa/kaginawa-sdk-java/javadoc.svg)](https://javadoc.io/doc/io.github.kaginawa/kaginawa-sdk-java)
 
